@@ -23,7 +23,7 @@ cities = []
 
 
 def cityreader(cities=[]):
-  # TODO Implement the functionality to read from the 'cities.csv' file
+  # Implement the functionality to read from the 'cities.csv' file
   # For each city record, create a new City instance and add it to the 
   # `cities` list
     with open('src/cityreader/cities.csv') as csv_file:
@@ -43,8 +43,8 @@ def cityreader(cities=[]):
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-# for c in cities:
-#     print(f"{c.name}, latitude: {c.lat}, longitude: {c.lon}\n")
+for c in cities:
+    print(f"{c.name}, latitude: {c.lat}, longitude: {c.lon}\n")
 
 # STRETCH GOAL!
 #
@@ -75,8 +75,8 @@ cityreader(cities)
 # Tucson: (32.1558,-110.8777)
 # Salt Lake City: (40.7774,-111.9301)
 
-# TODO Get latitude and longitude values from the user
-
+# Get latitude and longitude values from the user
+user_input = input("\nInput two latitudes and longitudes for two corners in a square in this format:\n45,-100,32,-120\n-> ").split(',')
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   h_lat = 0
@@ -96,13 +96,17 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     h_lon = lon2
     l_lon = lon1
   print(cities[0].lat, l_lat)
-  within = [f"{city.name}: ({city.lat}, {city.lon})" for city in cities if float(city.lat) > l_lat and float(city.lat) < h_lat and float(city.lon) > l_lon and float(city.lon) < h_lon]
-
   # Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
-  print(within)
-  return within
+  try:
+    within = [f"{city.name}: ({city.lat}, {city.lon})" for city in cities if float(city.lat) > l_lat and float(city.lat) < h_lat and float(city.lon) > l_lon and float(city.lon) < h_lon]
+    print(within)
+    return within
+  except:
+    print("invalid input")
 cityreader_stretch(45,-100,32,-120,cities)
-user_input = input("\nInput two latitudes and longitudes for two corners in a square in this format:\n45,-100,32,-120\n-> ").split(',')
-cityreader_stretch(float(user_input[0]), float(user_input[1]), float(user_input[2]), float(user_input[3]),cities)
+# try:
+#   cityreader_stretch(float(user_input[0]), float(user_input[1]), float(user_input[2]), float(user_input[3]),cities)
+# except:
+#   print('\ninvalid input, please enter four comma separated numbers\n')
