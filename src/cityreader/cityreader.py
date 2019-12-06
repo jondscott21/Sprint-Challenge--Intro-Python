@@ -101,7 +101,8 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
-
+  print(within)
   return within
-
-print(cityreader_stretch(45,-100,32,-120,cities))
+cityreader_stretch(45,-100,32,-120,cities)
+user_input = input("\nInput two latitudes and longitudes for two corners in a square in this format:\n45,-100,32,-120\n-> ").split(',')
+cityreader_stretch(float(user_input[0]), float(user_input[1]), float(user_input[2]), float(user_input[3]),cities)
