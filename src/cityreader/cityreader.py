@@ -36,7 +36,7 @@ def cityreader(cities=[]):
         name = r[0]
         lat = r[3]
         lon = r[4]
-        cities.append(City(name, lat, lon))
+        cities.append(City(name, float(lat), float(lon)))
     
     return cities
 
@@ -100,7 +100,7 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
   try:
-    within = [f"{city.name}: ({city.lat}, {city.lon})" for city in cities if float(city.lat) > l_lat and float(city.lat) < h_lat and float(city.lon) > l_lon and float(city.lon) < h_lon]
+    within = [City(city.name, city.lat, city.lon) for city in cities if float(city.lat) > l_lat and float(city.lat) < h_lat and float(city.lon) > l_lon and float(city.lon) < h_lon]
     print(within)
     return within
   except:
